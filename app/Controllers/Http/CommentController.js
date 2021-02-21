@@ -3,7 +3,7 @@ const Comment = use('App/Models/Comment')
 
 class CommentController {
     async store({request, response}){
-        const commentData = request.only(['coment','user','product'])
+        const commentData = request.only(['comment','user','product'])
         const comment = await Comment.create(commentData)
         return response.created({
             status: true,
@@ -11,8 +11,14 @@ class CommentController {
         })
     }
 
+    async commentsByProduct({params:{id}, response }){
+        const comments = await Comment.find().where('product', id ).fetch()
+        return response.json(comments)
+    }
+
     async index ({ response }) {
-        let comments = await Comment.query().with('user').fetch()
+        // let comments = await Comment.query().with('user').fetch()
+        let comments = await Comment.query().fetch()
         return response.json(comments)
     }
 

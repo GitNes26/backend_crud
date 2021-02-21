@@ -32,6 +32,7 @@ Route.put('/api/products/:id','ProductController.update')
 
 /* Rutas Comentarios */
 Route.get('/api/comments', 'CommentController.index')
+Route.get('/api/comments/:id', 'CommentController.commentsByProduct')
 Route.post('/api/comments','CommentController.store')
 Route.delete('/api/comments/:id','CommentController.destroy')
 Route.put('/api/comments/:id','CommentController.update')

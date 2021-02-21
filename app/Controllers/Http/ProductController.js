@@ -12,7 +12,7 @@ class ProductController {
     }
 
     async index ({ response }) {
-        let products = await Comment.query().fetch()
+        let products = await Product.query().fetch()
         return response.json(products)
     }
 
@@ -20,7 +20,7 @@ class ProductController {
         const product = request.input('product')
         const price = request.input('price')
 
-        let prod = await Comment.find(id)
+        let prod = await Product.find(id)
         
         prod.product = product
         prod.price = price
