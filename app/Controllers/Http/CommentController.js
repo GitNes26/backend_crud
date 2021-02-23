@@ -1,5 +1,6 @@
 'use strict'
 const Comment = use('App/Models/Comment')
+const Database = use ('Database')
 
 class CommentController {
     async store({request, response}){
@@ -12,7 +13,12 @@ class CommentController {
     }
 
     async commentsByProduct({params:{id}, response }){
-        const comments = await Comment.find().where('product', id ).fetch()
+        // const comments = await Comment.select('*').where('product', id ).fetch()
+        const comments = await Database.select('comments.comment','users.username','products.product')
+        .table('comments')
+        .innerJoin('products','comments.product','products.id')
+        .innerJoin('users','comments.user','users.id')
+        .where('comments.product',id )
         return response.json(comments)
     }
 

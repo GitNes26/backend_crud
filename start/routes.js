@@ -17,22 +17,22 @@
 const Route = use('Route')
 
 Route.post('/login', 'AuthController.login')
-Route.post('/logout', 'AuthController.logout')
+// Route.post('/logout', 'AuthController.logout')
 Route.post('/register','UserController.store')
 /* Rutas Usuarios */
-Route.get('/api/users', 'UserController.index')
-Route.delete('/api/users/:id','UserController.destroy')
-Route.put('/api/users/:id','UserController.update')
+Route.get('/api/users', 'UserController.index').middleware('auth')
+Route.delete('/api/users/:id','UserController.destroy').middleware('auth')
+Route.put('/api/users/:id','UserController.update').middleware('auth')
 
 /* Rutas Productos */
-Route.get('/api/products', 'ProductController.index')
-Route.post('/api/products','ProductController.store')
-Route.delete('/api/products/:id','ProductController.destroy')
-Route.put('/api/products/:id','ProductController.update')
+Route.get('/api/products', 'ProductController.index').middleware('auth')
+Route.post('/api/products','ProductController.store').middleware('auth')
+Route.delete('/api/products/:id','ProductController.destroy').middleware('auth')
+Route.put('/api/products/:id','ProductController.update').middleware('auth')
 
 /* Rutas Comentarios */
-Route.get('/api/comments', 'CommentController.index')
-Route.get('/api/comments/:id', 'CommentController.commentsByProduct')
-Route.post('/api/comments','CommentController.store')
-Route.delete('/api/comments/:id','CommentController.destroy')
-Route.put('/api/comments/:id','CommentController.update')
+Route.get('/api/comments', 'CommentController.index').middleware('auth')
+Route.get('/api/comments/:id', 'CommentController.commentsByProduct').middleware('auth')
+Route.post('/api/comments','CommentController.store').middleware('auth')
+Route.delete('/api/comments/:id','CommentController.destroy').middleware('auth')
+Route.put('/api/comments/:id','CommentController.update').middleware('auth')

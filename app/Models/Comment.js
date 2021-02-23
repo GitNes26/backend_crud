@@ -5,12 +5,12 @@ const Model = use('Model')
 
 class Comment extends Model {
 
-    user(){
+    users(){
         return this.belongsTo('App/Models/User')
     
     }
 
-    product(){
+    products(){
         return this.belongsTo('App/Models/Product')
 
     }

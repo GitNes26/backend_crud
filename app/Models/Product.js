@@ -5,7 +5,11 @@ const Model = use('Model')
 
 class Product extends Model {
 
-    comment (){
+    users(){
+        return this.belongsTo('App/Models/User')
+    }
+
+    comments (){
         return this.hasMany('App/Models/Comment')
     }
 }

@@ -9,6 +9,7 @@ class ProductsSchema extends Schema {
       table.increments()
       table.string('product', 80).notNullable().unique()
       table.double('price').notNullable().unique()
+      table.integer('user').unsigned().references('id').inTable('users')
       table.timestamps()
     })
   }
